@@ -153,7 +153,9 @@
                 <option value="4">レベル4(☆1)</option>
                 <option value="5">レベル5(☆1)</option>
                 <option value="6">レベル6(☆1)</option>
-                <option value="6">レベル7(☆1)</option>
+                <option value="7">レベル7(☆1)</option>
+                <option value="8">レベル8(☆1)</option>
+                <option value="9">レベル9(☆1)</option>
                 </select>
                 <input type="button" value="開始する" onclick="kantango();"><br>
                 ※固有名詞以外は小文字から始めてください。ピリオドはつけません。<br>
@@ -194,6 +196,10 @@
         var tantan6=["egg","great","she","now","nice","trip","home","goodbye","this","more"]
         var tango7=["了解、わかりました","（電話で）もしもし、こんにちは","あっ、おや、まあ","電話をかける、〜を呼ぶ、電話","〜に感謝する","プレゼント","財布、ハンドバッグ","〜を与える、〜を送る","giveの過去形","giveの過去分詞"]
         var tantan7=["OK","hello","oh","call","thank","present","purse","give","gave","given"]
+        var tango8=["callの過去形、過去分詞","お母さん、母親","だから、とても、そんなに、","働く","私のもの","ピザ","すばらしい、最高の","わくわくするような","である（be動詞の主語が三人称単数現在形の場合）","私たちの"]
+        var tantan8=["called","mother","so","work","mine","pizza","super","exciting","is","our"]
+        var tango9=["ダンス、踊り","をする、行う、する","バスケットボール","完全に、絶対に","学校","〜の間に","あなたの","才能","いつもは、通常は","漫画、アニメ"]
+        var tantan9=["dance","do","basketball","absolutely","school","during","your","talent","usually","cartoon"]
         var tango=[]
         var tantan=[]
         var now = 0
@@ -239,6 +245,7 @@
             if(i==10){
                 document.getElementById("monda").innerHTML="終了<br>正答数："+tantan.length+"問中"+seito+"問"
                 now=0
+                document.getElementById("kotae").value=""
                 document.getElementById('twitter').style.display="block";
                 return;
             }
