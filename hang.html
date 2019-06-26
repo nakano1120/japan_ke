@@ -153,18 +153,26 @@
     <div class="Contents">	
         <div class="box11">
             <p>
-                レベル選択<br>
-                <select id="level">
-                        <option value="0">=選択してください=</option>
-                        <option value="1">レベル1（〜は）</option>
-                        <option value="2">レベル2（名詞1）</option>
-                        <option value="3">レベル3（名詞2）</option>
-                        <option value="4">レベル4（お金）</option>
-                        <option value="5">レベル5（学校）</option>
-                        <option value="6">レベル6（会話）</option>
-                        <option value="7">レベル7（天気）</option>
+                レベル選択（左のリストから選択してください。）<br>
+                <select name="league" id="classes" onchange="teamSet()">
+                        <option value="0">=ステージ=</option>
+                        <option value="1">ステージ1</option>
                 </select>
-                <input type="button" value="開始する" onclick="kantango();">
+                <select id="level">
+                        <option value="0">=========</option>
+                        <option value="1"></option>
+                        <option value="2"></option>
+                        <option value="3"></option>
+                        <option value="4"></option>
+                        <option value="5"></option>
+                        <option value="6"></option>
+                        <option value="7"></option>
+                        <option value="8"></option>
+                        <option value="9"></option>
+                        <option value="10"></option>
+                </select>
+                <input type="button" value="開始する" onclick="kantango();"><br>
+                韓国語を見て、日本語の意味を答えてください。
                 <div id="twitter">
                         <a href="#" class="twitter" onclick="botan();">Twitter</a>
                 </div>
@@ -187,6 +195,9 @@
         </div>
     </div>
     <script>
+        var stage_1=new Array(
+            "=stage 1=","レベル1（〜は）","レベル2（名詞1）","レベル3(名詞2)","レベル4(お金)","レベル5(学校)","レベル6(会話)","レベル7(天気)","なし","なし","なし"
+        );
         var tango1=["나는","당신은","그는","그녀는","남자","여자","이것은","그것은","저것은","이름"]
         var tantan1=["私は","あなたは","彼は","彼女は","男","女","これは","それは","あれは","名前"]
         var tango2=["펜","사과","오렌지","개","고양이","내","집","내가","안녕하세요","사람"]
@@ -207,17 +218,23 @@
         var i=0
         var seito=0
         function kantango(){
+            now=0
             seito=0
             document.getElementById("kotae").value=""
             var num = document.getElementById("level").selectedIndex;
+            var num2 = document.getElementById("classes").selectedIndex;
             if(num==0){
                     alert('レベルが選択されていません。')
                     return
             }else{
+                    if(now>8){
+                        alert("現在、LV11~未実装です。")
+                        return;
+                    }
                     document.getElementById("box12").style.display = "block";
                     seito=0
                     i=0
-                    now=num
+                    now=num2*10+num-10
                     eval("tango=tango"+num)
                     eval("tantan=tantan"+num)
                     document.getElementById("monda").innerHTML=tango[i]
@@ -227,7 +244,7 @@
             }
         }
         function kaitou(){
-            if (now==0){
+            if (i==tantan.length){
                 alert("まずレベルを選択してください。");
                 return;
             }
@@ -245,7 +262,6 @@
             i+=1
             if(i==tantan.length){
                 document.getElementById("monda").innerHTML="終了<br>正答数："+tantan.length+"問中"+seito+"問"
-                now=0
                 document.getElementById('twitter').style.display="block";
                 return;
             }
@@ -259,7 +275,23 @@
         }
         function botan(){
             var num = document.getElementById("level").selectedIndex;
-            openTwitter("☆瞬間韓単語☆　レベル"+num+"で"+tantan.length+"問中"+seito+"問正解しました！","https://flashkorean.herokuapp.com/hang.html","瞬間韓単語","なっかのう");
+            openTwitter("☆瞬間韓単語☆　レベル"+now+"で"+tantan.length+"問中"+seito+"問正解しました！","https://flashkorean.herokuapp.com/hang.html","瞬間韓単語","なっかのう");
+        }
+        function teamSet(){
+
+//オプションタグを連続して書き換える
+            for ( i=0; i<11; i++ ){
+
+            //選択したリーグによって分岐
+                switch (document.getElementById("classes").selectedIndex){
+                        case 0: document.getElementById("level").options[i].text="";break;
+                        case 1: document.getElementById("level").options[i].text=stage_1[i];break;
+                        case 2: document.getElementById("level").options[i].text=stage_2[i];break;
+                }
+            }
+
+            //チーム名のセレクトボックスの選択番号を０にする
+            document.getElementById("level").selectedIndex=0;
         }
     </script>
 </body>

@@ -143,20 +143,24 @@
     <div class="Contents">	
         <div class="box11">
             <p>
-                レベル選択<br>
+                レベル選択（左のリストから選択してください。）<br>
+                <select name="league" id="classes" onchange="teamSet()">
+                    <option value="0">=ステージ=</option>
+                    <option value="1">Class G</option>
+                    <option value="2">Class F</option>
+                </select>
                 <select id="level">
-                <option value="0">=選択してください=</option>
-                <option value="1">レベル1(☆1)
-                </option>
-                <option value="2">レベル2(☆1)</option>
-                <option value="3">レベル3(☆1)</option>
-                <option value="4">レベル4(☆1)</option>
-                <option value="5">レベル5(☆1)</option>
-                <option value="6">レベル6(☆1)</option>
-                <option value="7">レベル7(☆1)</option>
-                <option value="8">レベル8(☆1)</option>
-                <option value="9">レベル9(☆1)</option>
-                <option value="10">レベル10(☆1)</option>
+                <option value="0">=========</option>
+                <option value="1"></option>
+                <option value="2"></option>
+                <option value="3"></option>
+                <option value="4"></option>
+                <option value="5"></option>
+                <option value="6"></option>
+                <option value="7"></option>
+                <option value="8"></option>
+                <option value="9"></option>
+                <option value="10"></option>
                 </select>
                 <input type="button" value="開始する" onclick="kantango();"><br>
                 ※固有名詞以外は小文字から始めてください。ピリオドはつけません。<br>
@@ -183,6 +187,14 @@
         </div>
     </div>
     <script>
+        var g_class=new Array(
+            "=Class G=","レベル1(☆1)","レベル2(☆1)","レベル3(☆1)","レベル4(☆1)","レベル5(☆1)","レベル6(☆1)","レベル7(☆1)","レベル8(☆1)","レベル9(☆1)","レベル10(☆1)"
+        );
+
+        //パ・リーグのチームの配列
+        var f_class=new Array(
+            "=Class F=","レベル11(☆1)","レベル12(☆1)","レベル13(☆1)","レベル14(☆1)","レベル15(☆1)","レベル16(☆1)","レベル17(☆1)","レベル18(☆1)","レベル19(☆1)","レベル20(☆1)"
+        );
         var tango1=["午後","再び","年齢、年代","すべての","すでに","〜もまた","アメリカ合衆国","〜と、そして","怒った","りんご"]
         var tantan1=["afternoon","again","age","all","already","also","America","and","angry","apple"]
         var tango2=["質問","インターネット","テレビ","わかりました、もちろん","パパ、お父さん","いくつかの、いくらかの","花","私の","誕生日","かわいらしい、すてきな"]
@@ -203,25 +215,33 @@
         var tantan9=["dance","do","basketball","absolutely","school","during","your","talent","usually","cartoon"]
         var tango10=["暇な、無料の、自由な","コンテスト、競技会","行く、通う","通り","左に","区画、大きな塊、ブロック","右","警察","助ける","眺め、景色、意見、見解"]
         var tantan10=["free","contest","go","street","left","block","right","polise","help","view"]
+        var tango11=["暇な、無料の、自由な","コンテスト、競技会","行く、通う","通り","左に","区画、大きな塊、ブロック","右","警察","助ける","眺め、景色、意見、見解"]
+        var tantan11=["free","contest","go","street","left","block","right","polise","help","view"]
         var tango=[]
         var tantan=[]
         var now = 0
         var i=0
         var seito=0
         function kantango(){
+            now=0
             seito=0
             document.getElementById("kotae").value=""
             var num = document.getElementById("level").selectedIndex;
-            if(num==0){
+            var num2 = document.getElementById("classes").selectedIndex;
+            if(num == 0 || num2 == 0){
                     alert('レベルが選択されていません。')
                     return
             }else{
+                    now=num2*10+num-10
+                    if(now>10){
+                        alert("現在、LV11~未実装です。")
+                        return;
+                    }
                     document.getElementById("box11").style.display = "block";
                     seito=0
                     i=0
-                    now=num
-                    eval("tango=tango"+num)
-                    eval("tantan=tantan"+num)
+                    eval("tango=tango"+now)
+                    eval("tantan=tantan"+now)
                     document.getElementById("monda").innerHTML=tango[i]
                     document.getElementById("moji").innerHTML=tantan[i].length+"文字で回答"
                     document.getElementById("mono2").style.display = "none";
@@ -229,7 +249,7 @@
             }
         }
         function kaitou(){
-            if (now==0){
+            if (i==10){
                 alert("まずレベルを選択してください。");
                 return;
             }
@@ -247,7 +267,6 @@
             i+=1
             if(i==10){
                 document.getElementById("monda").innerHTML="終了<br>正答数："+tantan.length+"問中"+seito+"問"
-                now=0
                 document.getElementById("kotae").value=""
                 document.getElementById('twitter').style.display="block";
                 return;
@@ -268,8 +287,24 @@
         }
         function botan(){
             var num = document.getElementById("level").selectedIndex;
-            openTwitter("☆瞬間英単語☆ レベル"+num+"で"+tantan.length+"問中"+seito+"問正解しました！","https://flashkorean.herokuapp.com/eitan.html","瞬間英単語","なっかのう");
+            openTwitter("☆瞬間英単語☆ レベル"+now+"で"+tantan.length+"問中"+seito+"問正解しました！","https://flashkorean.herokuapp.com/eitan.html","瞬間英単語","なっかのう");
         }
-    </script>
+        function teamSet(){
+
+    //オプションタグを連続して書き換える
+            for ( i=0; i<11; i++ ){
+
+            //選択したリーグによって分岐
+                switch (document.getElementById("classes").selectedIndex){
+                        case 0: document.getElementById("level").options[i].text="";break;
+                        case 1: document.getElementById("level").options[i].text=g_class[i];break;
+                        case 2: document.getElementById("level").options[i].text=f_class[i];break;
+                }
+            }
+
+            //チーム名のセレクトボックスの選択番号を０にする
+            document.getElementById("level").selectedIndex=0;
+        }
+            </script>
 </body>
 </html>
