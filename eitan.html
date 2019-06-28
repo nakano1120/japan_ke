@@ -344,7 +344,8 @@
         }
         function botan(){
             var num = document.getElementById("level").selectedIndex;
-            openTwitter("☆瞬間英単語☆ レベル"+now+"で"+tantan.length+"問中"+seito+"問正解しました！現在の経験値は"+parseInt(cnt)+parseInt(seito)+"です！","https://flashkorean.herokuapp.com/eitan.html","瞬間英単語","なっかのう");
+            var keisan = parseInt(cnt)+parseInt(seito)
+            openTwitter("☆瞬間英単語☆ レベル"+now+"で"+tantan.length+"問中"+seito+"問正解しました！現在の経験値は"+keisan+"です！","https://flashkorean.herokuapp.com/eitan.html","瞬間英単語","なっかのう");
         }
         function teamSet(){
 
