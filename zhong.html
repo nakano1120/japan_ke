@@ -257,7 +257,7 @@
                     cook=document.cookie + ";";  //変数cookにcookieデータを入れる
                     
                     //変数cStartにカウントデータの最初の位置を入れる
-                    cStart = cook.indexOf("counts=",0);
+                    cStart = cook.indexOf("counts3=",0);
                     
                     //データの有無で分岐
                     if (cStart == -1){
@@ -265,7 +265,7 @@
                         document.getElementById("exp").innerHTML=("1");
                         
                         //cookieに訪問回数=1を書き込む
-                        document.cookie="counts=1;";  
+                        document.cookie="counts3=1;";  
                     }else{
                         //カウントデータの最後の部分「;」の位置を取得
                         cEnd=cook.indexOf(";",cStart);
@@ -281,7 +281,7 @@
                         document.getElementById("exp").innerHTML=(cnt);
                         
                         //cookieに訪問回数を書き込む
-                        document.cookie="counts="+cnt+";";
+                        document.cookie="counts3="+cnt+";";
                         }
                         catch(e)
                         {
