@@ -141,7 +141,7 @@
 <body>
     <div class="Header">瞬間英単語<a href="hang.html" class="lin">瞬間韓単語</a></div>	
     <div class="Contents">	
-        <div class="box11">
+        <div class="box11" id="menubox">
             <p>
                 レベル選択（左のリストから選択してください。）<br><b>現在の経験値：</b><span id="exp"></span><br>
                 <select name="league" id="classes" onchange="teamSet()">
@@ -238,6 +238,7 @@
                         return;
                     }
                     document.getElementById("box11").style.display = "block";
+                    document.getElementById("menubox").style.display = "none";
                     seito=0
                     i=0
                     eval("tango=tango"+now)
@@ -312,10 +313,11 @@
                 document.getElementById("mono").innerHTML="不正解<br>正答:"+tantan[i]+"<br>回答:"+kaito;
             }
             i+=1
-            if(i==10){
+            if(i==tantan.length){
                 document.getElementById("monda").innerHTML="終了<br>正答数："+tantan.length+"問中"+seito+"問"
                 document.getElementById("kotae").value=""
                 document.getElementById('twitter').style.display="block";
+                document.getElementById("menubox").style.display = "block";
                 return;
             }
             document.getElementById("monda").innerHTML=tango[i]
