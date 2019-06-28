@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="なっかのう" />
-    <meta name="twitter:title" content="瞬間韓単語" />
-    <meta name="twitter:description" content="韓国語力を向上するページです。" />
-    <meta name="twitter:image" content="https://flashkorean.herokuapp.com/kantan.png" />
-    <meta name="twitter:url" content="https://flashkorean.herokuapp.com/hang.html" />
-    <title>瞬間韓単語</title>
+    <meta name="twitter:title" content="瞬間英単語" />
+    <meta name="twitter:description" content="英語力を向上するページです。" />
+    <meta name="twitter:image" content="https://flashkorean.herokuapp.com/man.png" />
+    <meta name="twitter:url" content="https://flashkorean.herokuapp.com/eitan.html" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>瞬間中単語</title>
     <style>
     body{
         margin: 20px;	/* bodyの外側の余白を指定する */
@@ -44,18 +44,8 @@
         margin: 0; 
         padding: 10px;
     }
-    .box12{
+    #box11{
         display:none;
-        padding: 0.5em 1em;
-        margin: 2em 0;
-        color: #4a4d5e;
-        background: white;
-        border-top: solid 5px #5d627b;
-        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
-    }
-    .box12 p {
-        margin: 0; 
-        padding: 10px;
     }
     .center{
         text-align:center;
@@ -118,7 +108,7 @@
     }
     .lin{
         float:right;
-        color:red;
+        color:skyblue;
         padding: 0px 50px;
     }
     #twitter{
@@ -149,41 +139,42 @@
     </style>
 </head>
 <body>
-    <div class="Header">瞬間韓単語<a href="zhong.html" class="lin">瞬間中単語</a></div>	
-    <div class="Contents">	
-            <div class="box11">
-                    <p>
-                        <b>現在の経験値：</b><span id="exp"></span>
-                    </p>
-            </div>
+    <div class="Header">瞬間中単語<a href="eitan.html" class="lin">瞬間英単語</a></div>	
+    <div class="Contents">
+        <div class="box11">
+            <p>
+                <b>現在の経験値：</b><span id="exp"></span>
+            </p>
+        </div>
         <div class="box11" id="menubox">
             <p>
                 レベル選択（左のリストから選択してください。）<br><br>
                 <select name="league" id="classes" onchange="teamSet()">
-                        <option value="0">=ステージを選択=</option>
-                        <option value="1">ステージ1</option>
+                    <option value="0">=ステージを選択=</option>
+                    <option value="1">Class 1</option>
+                    <option value="2">Class 2（準備中）</option>
                 </select>
                 <select id="level">
-                        <option value="0">=========</option>
-                        <option value="1"></option>
-                        <option value="2"></option>
-                        <option value="3"></option>
-                        <option value="4"></option>
-                        <option value="5"></option>
-                        <option value="6"></option>
-                        <option value="7"></option>
-                        <option value="8"></option>
-                        <option value="9"></option>
-                        <option value="10"></option>
+                <option value="0">=========</option>
+                <option value="1"></option>
+                <option value="2"></option>
+                <option value="3"></option>
+                <option value="4"></option>
+                <option value="5"></option>
+                <option value="6"></option>
+                <option value="7"></option>
+                <option value="8"></option>
+                <option value="9"></option>
+                <option value="10"></option>
                 </select>
                 <input type="button" value="開始する" onclick="kantango();"><br>
-                韓国語を見て、日本語の意味を答えてください。
+                ※中国語を入力するので、PCで設定をしてから始めてください。<br>
                 <div id="twitter">
                         <a href="#" class="twitter" onclick="botan();">Twitter</a>
                 </div>
             </p>
         </div>
-        <div class="box12 center" id="box12">
+        <div class="box11 center" id="box11">
             <p>
                 <div id="mono"class="box2">
                     <p>正解不正解</p>
@@ -197,28 +188,20 @@
                 <div class="container">
                     <a href="#" class="btn-push" onclick="kaitou();">回答</a>
                 </div>
+            </p>
         </div>
     </div>
     <script>
-        var stage_1=new Array(
-            "=stage 1=","レベル1（〜は）","レベル2（名詞1）","レベル3(名詞2)","レベル4(お金)","レベル5(学校)","レベル6(会話)","レベル7(天気)","レベル8(形容詞1)","なし","なし"
+        var g_class=new Array(
+            "=Class G=","レベル1(☆1)","レベル2(☆1)","レベル3(☆1)","レベル4(☆1)","レベル5(☆1)","レベル6(☆1)","レベル7(☆1)","レベル8(☆1)","レベル9(☆1)","レベル10(☆1)"
         );
-        var tango1=["나는","당신은","그는","그녀는","남자","여자","이것은","그것은","저것은","이름"]
-        var tantan1=["私は","あなたは","彼は","彼女は","男","女","これは","それは","あれは","名前"]
-        var tango2=["펜","사과","오렌지","개","고양이","내","집","내가","안녕하세요","사람"]
-        var tantan2=["ペン","りんご","オレンジ","犬","猫","私の","家","私が","こんにちは","人"]
-        var tango3=["노래","어머니","아버지","야구","바다","가치","포도","슈퍼","가구","단어"]
-        var tantan3=["歌","お母さん","お父さん","野球","海","価値","ぶどう","スーパーマーケット","家具","単語"]
-        var tango4=["돈","가족","학교","숫자","요일","동물","계산","가격","쓰다","모자라다"]
-        var tantan4=["お金","家族","学校","数字","曜日","動物","お会計","価格","使う","足りない"]
-        var tango5=["유치원","초등학교","중학교","고등학교","대학","대학원","전문","분야","국어","수학"]
-        var tantan5=["幼稚園","小学校","中学校","高校","大学","大学院","専門","分野","国語","数学"]
-        var tango6=["맛","시간","관심","수업","일","정말","예","아니오","약속","팬"]
-        var tantan6=["味","時間","関心","授業","仕事","本当に","はい","いいえ","約束","ファン"]
-        var tango7=["날씨","일기 예보","맑음","비","흐림","눈","태풍","벼락","장마","기온"]
-        var tantan7=["天気","天気予報","晴れ","雨","曇り","雪","台風","雷","梅雨","気温"]
-        var tango8=["크다","작다","많다","적다","길다","짧다","높다","낮다","무겁다","가볍다"]
-        var tantan8=["大きい","小さい","多い","少ない","長い","短い","高い","低い","重い","軽い"]
+
+        //パ・リーグのチームの配列
+        var f_class=new Array(
+            "=Class F=","レベル11(☆1)","レベル12(☆1)","レベル13(☆1)","レベル14(☆1)","レベル15(☆1)","レベル16(☆1)","レベル17(☆1)","レベル18(☆1)","レベル19(☆1)","レベル20(☆1)"
+        );
+        var tango1=["〜と呼ぶ","姓を〜という","わたし","〜である、〜です","とても","あなた","あなた（敬称）","はじめまして、こんにちは","さようなら","文末につけて「〜か？」"]
+        var tantan1=["叫","姓","我","是","很","你","您","你好","再见","吗"]
         var tango=[]
         var tantan=[]
         var now = 0
@@ -233,21 +216,21 @@
             document.getElementById("kotae").value=""
             var num = document.getElementById("level").selectedIndex;
             var num2 = document.getElementById("classes").selectedIndex;
-            if(num==0){
+            if(num == 0 || num2 == 0){
                     alert('レベルが選択されていません。')
                     return
             }else{
-                    if(now>8){
-                        alert("現在、LV9~未実装です。")
+                    now=num2*10+num-10
+                    if(now>1){
+                        alert("現在、LV2~未実装です。")
                         return;
                     }
-                    document.getElementById("box12").style.display = "block";
+                    document.getElementById("box11").style.display = "block";
                     document.getElementById("menubox").style.display = "none";
                     seito=0
                     i=0
-                    now=num2*10+num-10
-                    eval("tango=tango"+num)
-                    eval("tantan=tantan"+num)
+                    eval("tango=tango"+now)
+                    eval("tantan=tantan"+now)
                     document.getElementById("monda").innerHTML=tango[i]
                     document.getElementById("moji").innerHTML=tantan[i].length+"文字で回答"
                     document.getElementById("mono2").style.display = "none";
@@ -255,7 +238,7 @@
             }
         }
         function kaitou(){
-            if (i==tantan.length){
+            if (i==10){
                 alert("まずレベルを選択してください。");
                 return;
             }
@@ -274,7 +257,7 @@
                     cook=document.cookie + ";";  //変数cookにcookieデータを入れる
                     
                     //変数cStartにカウントデータの最初の位置を入れる
-                    cStart = cook.indexOf("counts2=",0);
+                    cStart = cook.indexOf("counts=",0);
                     
                     //データの有無で分岐
                     if (cStart == -1){
@@ -282,13 +265,13 @@
                         document.getElementById("exp").innerHTML=("1");
                         
                         //cookieに訪問回数=1を書き込む
-                        document.cookie="counts2=1;";  
+                        document.cookie="counts=1;";  
                     }else{
                         //カウントデータの最後の部分「;」の位置を取得
                         cEnd=cook.indexOf(";",cStart);
                         
                         //数値の部分だけを切り取る
-                        cnt=cook.substring(cStart+8,cEnd);
+                        cnt=cook.substring(cStart+7,cEnd);
                         
                         //数値に変換できない例外が出た時の処理
                         try
@@ -298,7 +281,7 @@
                         document.getElementById("exp").innerHTML=(cnt);
                         
                         //cookieに訪問回数を書き込む
-                        document.cookie="counts2="+cnt+";";
+                        document.cookie="counts="+cnt+";";
                         }
                         catch(e)
                         {
@@ -320,6 +303,7 @@
             i+=1
             if(i==tantan.length){
                 document.getElementById("monda").innerHTML="終了<br>正答数："+tantan.length+"問中"+seito+"問"
+                document.getElementById("kotae").value=""
                 document.getElementById('twitter').style.display="block";
                 document.getElementById("menubox").style.display = "block";
                 return;
@@ -328,6 +312,12 @@
             document.getElementById("moji").innerHTML=tantan[i].length+"文字で回答"
             document.getElementById("kotae").value=""
         }
+        function nextForm(){
+            if(event.keyCode == 13){
+                kaitou();
+            }
+        }
+        window.document.onkeydown = nextForm;
         function openTwitter(text,url,hash,account) {
 	        var turl = "https://twitter.com/intent/tweet?text="+text+"&url="+url+"&hashtags="+hash+"&via="+account;
 	        window.open(turl,'_blank');
@@ -335,37 +325,32 @@
         function botan(){
             var num = document.getElementById("level").selectedIndex;
             var keisan = parseInt(cnt)+parseInt(seito)
-            openTwitter("☆瞬間韓単語☆　レベル"+now+"で"+tantan.length+"問中"+seito+"問正解しました！現在の経験値は"+keisan+"です！","https://flashkorean.herokuapp.com/hang.html","瞬間韓単語","なっかのう");
+            openTwitter("☆瞬間中単語☆ レベル"+now+"で"+tantan.length+"問中"+seito+"問正解しました！現在の経験値は"+keisan+"です！","https://flashkorean.herokuapp.com/eitan.html","瞬間中単語","なっかのう");
         }
         function teamSet(){
 
-//オプションタグを連続して書き換える
+    //オプションタグを連続して書き換える
             for ( i=0; i<11; i++ ){
 
             //選択したリーグによって分岐
                 switch (document.getElementById("classes").selectedIndex){
                         case 0: document.getElementById("level").options[i].text="";break;
-                        case 1: document.getElementById("level").options[i].text=stage_1[i];break;
-                        case 2: document.getElementById("level").options[i].text=stage_2[i];break;
+                        case 1: document.getElementById("level").options[i].text=g_class[i];break;
+                        case 2: document.getElementById("level").options[i].text=f_class[i];break;
                 }
             }
 
             //チーム名のセレクトボックスの選択番号を０にする
             document.getElementById("level").selectedIndex=0;
         }
-        function nextForm(){
-            if(event.keyCode == 13){
-                kaitou();
-            }
-        }
-        window.document.onkeydown = nextForm;
+
         //cookieが使えるか確認
         if (navigator.cookieEnabled)
             {
             cook=document.cookie + ";";  //変数cookにcookieデータを入れる
             
             //変数cStartにカウントデータの最初の位置を入れる
-            cStart = cook.indexOf("counts2=",0);
+            cStart = cook.indexOf("counts3=",0);
             
             //データの有無で分岐
             if (cStart == -1)
@@ -374,7 +359,7 @@
                 document.getElementById("exp").innerHTML=("0");
                 
                 //cookieに訪問回数=1を書き込む
-                document.cookie="counts2=0;";  
+                document.cookie="counts3=0;";  
             }
             else
             {
@@ -390,7 +375,7 @@
                 document.getElementById("exp").innerHTML=(cnt);
                 
                 //cookieに訪問回数を書き込む
-                document.cookie="counts2="+cnt+";";
+                document.cookie="counts3="+cnt+";";
                 }
                 catch(e)
                 {
@@ -403,6 +388,6 @@
             //cookieが使用できない時の処理
             document.getElementById("exp").innerHTML=""
         }
-    </script>
+        </script>
 </body>
 </html>
