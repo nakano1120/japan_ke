@@ -139,7 +139,7 @@
     </style>
 </head>
 <body>
-    <div class="Header">瞬間英単語<a href="hang.html" class="lin">瞬間韓単語へ</a></div>	
+    <div class="Header">瞬間英単語 EXP<span id="exp"></span><a href="hang.html" class="lin">瞬間韓単語へ</a></div>	
     <div class="Contents">	
         <div class="box11">
             <p>
@@ -258,6 +258,53 @@
                 document.getElementById("mono2").style.display = "inline-block";
                 document.getElementById("mono").style.display = "none";
                 document.getElementById("mono2").innerHTML="正解<br>正答:"+tantan[i]+"<br>回答:"+kaito; 
+                var cook;       //cookieデータを格納する変数
+                var cStart,cEnd;  //訪問回数部分を切取る為の位置を格納
+                var cnt;        //訪問回数を格納
+
+                //cookieが使えるか確認
+                if (navigator.cookieEnabled)
+                    {
+                    cook=document.cookie + ";";  //変数cookにcookieデータを入れる
+                    
+                    //変数cStartにカウントデータの最初の位置を入れる
+                    cStart = cook.indexOf("counts=",0);
+                    
+                    //データの有無で分岐
+                    if (cStart == -1){
+                        //データの無い場合は最初の訪問ということ
+                        document.getElementById("exp").innerHTML=("1");
+                        
+                        //cookieに訪問回数=1を書き込む
+                        document.cookie="counts=1;";  
+                    }else{
+                        //カウントデータの最後の部分「;」の位置を取得
+                        cEnd=cook.indexOf(";",cStart);
+                        
+                        //数値の部分だけを切り取る
+                        cnt=cook.substring(cStart+7,cEnd);
+                        
+                        //数値に変換できない例外が出た時の処理
+                        try
+                        {
+                        //取得した回数に+1して表示する
+                        cnt=parseInt(cnt)+1;
+                        document.getElementById("exp").innerHTML=(cnt);
+                        
+                        //cookieに訪問回数を書き込む
+                        document.cookie="counts="+cnt+";";
+                        }
+                        catch(e)
+                        {
+                            document.getElementById("exp").innerHTML=("");
+                        }
+                    }
+                    }
+                    else
+                    {
+                    //cookieが使用できない時の処理
+                    document.getElementById("exp").innerHTML=""
+                }
                 seito+=1
             }else{
                 document.getElementById("mono2").style.display = "none";
@@ -305,6 +352,51 @@
             //チーム名のセレクトボックスの選択番号を０にする
             document.getElementById("level").selectedIndex=0;
         }
-            </script>
+
+        //cookieが使えるか確認
+        if (navigator.cookieEnabled)
+            {
+            cook=document.cookie + ";";  //変数cookにcookieデータを入れる
+            
+            //変数cStartにカウントデータの最初の位置を入れる
+            cStart = cook.indexOf("counts=",0);
+            
+            //データの有無で分岐
+            if (cStart == -1)
+            {
+                //データの無い場合は最初の訪問ということ
+                document.getElementById("exp").innerHTML=("0");
+                
+                //cookieに訪問回数=1を書き込む
+                document.cookie="counts=0;";  
+            }
+            else
+            {
+                //カウントデータの最後の部分「;」の位置を取得
+                cEnd=cook.indexOf(";",cStart);
+                
+                //数値の部分だけを切り取る
+                cnt=cook.substring(cStart+7,cEnd);
+                
+                //数値に変換できない例外が出た時の処理
+                try
+                {
+                document.write(cnt);
+                
+                //cookieに訪問回数を書き込む
+                document.cookie="counts="+cnt+";";
+                }
+                catch(e)
+                {
+                    document.getElementById("exp").innerHTML=("");
+                }
+            }
+            }
+            else
+            {
+            //cookieが使用できない時の処理
+            document.getElementById("exp").innerHTML=""
+        }
+        </script>
 </body>
 </html>
