@@ -198,7 +198,7 @@
 
         //パ・リーグのチームの配列
         var f_class=new Array(
-            "=Class F=","レベル11(☆1)","レベル12(☆1)","レベル13(☆1)","レベル14(☆1)","レベル15(☆1)","レベル16(☆1)","レベル17(☆1)","レベル18(☆1)","レベル19(☆1)","レベル20(☆1)"
+            "=Class F=","レベル11(☆2)","レベル12(☆2)","レベル13(☆1)","レベル14(☆1)","レベル15(☆1)","レベル16(☆1)","レベル17(☆1)","レベル18(☆1)","レベル19(☆1)","レベル20(☆1)"
         );
         var tango1=["午後","再び","年齢、年代","すべての","すでに","〜もまた","アメリカ合衆国","〜と、そして","怒った","りんご"]
         var tantan1=["afternoon","again","age","all","already","also","America","and","angry","apple"]
@@ -220,8 +220,10 @@
         var tantan9=["dance","do","basketball","absolutely","school","during","your","talent","usually","cartoon"]
         var tango10=["暇な、無料の、自由な","コンテスト、競技会","行く、通う","通り","左に","区画、大きな塊、ブロック","右","警察","助ける","眺め、景色、意見、見解"]
         var tantan10=["free","contest","go","street","left","block","right","police","help","view"]
-        var tango11=["暇な、無料の、自由な","コンテスト、競技会","行く、通う","通り","左に","区画、大きな塊、ブロック","右","警察","助ける","眺め、景色、意見、見解"]
-        var tantan11=["free","contest","go","street","left","block","right","police","help","view"]
+        var tango11=["山","湖","澄んだ、晴れた","おそらく、たぶん","〜し続ける","起きる(2単語)","まだ、それでも","今日は、今日","眠い","それは、それを"]
+        var tantan11=["mountain","lake","clear","maybe","continue","wake up","still","today","sleepy","it"]
+        var tango12=["〜に遅れる(3単語)","起き上がる(2単語)","〜もまた、〜すぎる","お茶、紅茶","それから、それなら","である（主語がyouまたは複数の現在形）","おいしい","美味しそうに見える（2単語）","ハワイ","どの、どちらの"]
+        var tantan12=["be late for","get up","too","tea","then","are","delicious","look good","Hawaii","which"]
         var tango=[]
         var tantan=[]
         var now = 0
@@ -241,8 +243,8 @@
                     return
             }else{
                     now=num2*10+num-10
-                    if(now>10){
-                        alert("現在、LV11~未実装です。")
+                    if(now>12){
+                        alert("現在、LV13~未実装です。")
                         return;
                     }
                     document.getElementById("box11").style.display = "block";
