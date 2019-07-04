@@ -162,6 +162,7 @@
                 <select name="league" id="classes" onchange="teamSet()">
                         <option value="0">=ステージを選択=</option>
                         <option value="1">ステージ1</option>
+                        <option value="2">ステージ2（未実装）</option>
                 </select>
                 <select id="level">
                         <option value="0">=========</option>
@@ -201,7 +202,10 @@
     </div>
     <script>
         var stage_1=new Array(
-            "=stage 1=","レベル1（〜は）","レベル2（名詞1）","レベル3(名詞2)","レベル4(お金)","レベル5(学校)","レベル6(会話)","レベル7(天気)","レベル8(形容詞1)","なし","なし"
+            "=stage 1=","レベル1（〜は）","レベル2（名詞1）","レベル3(名詞2)","レベル4(お金)","レベル5(学校)","レベル6(会話)","レベル7(天気)","レベル8(形容詞1)","レベル9(母音だけ)","レベル10（複合母音祭り）"
+        );
+        var stage_2=new Array(
+            "=stage 2=","レベル11","レベル12","レベル13","レベル14","レベル15","レベル16","レベル17","レベル18","レベル19","レベル20"
         );
         var tango1=["나는","당신은","그는","그녀는","남자","여자","이것은","그것은","저것은","이름"]
         var tantan1=["私は","あなたは","彼は","彼女は","男","女","これは","それは","あれは","名前"]
@@ -219,6 +223,10 @@
         var tantan7=["天気","天気予報","晴れ","雨","曇り","雪","台風","雷","梅雨","気温"]
         var tango8=["크다","작다","많다","적다","길다","짧다","높다","낮다","무겁다","가볍다"]
         var tantan8=["大きい","小さい","多い","少ない","長い","短い","高い","低い","重い","軽い"]
+        var tango9=["이","오","아이","아우","오이","우유","이유","여우","여유","여아"]
+        var tantan9=["歯","5","子供","弟","きゅうり","牛乳","理由","きつね","余裕","幼児"]
+        var tango10=["위","웨어","와요","왜요?","외워요","예의","의외","의의","아우의","위에"]
+        var tantan10=["上","ウェア","来ます","なぜですか","覚えます","礼儀","意外","意義","弟の","上の"]
         var tango=[]
         var tantan=[]
         var now = 0
@@ -237,8 +245,8 @@
                     alert('レベルが選択されていません。')
                     return
             }else{
-                    if(now>8){
-                        alert("現在、LV9~未実装です。")
+                    if(now>10){
+                        alert("現在、LV10~未実装です。")
                         return;
                     }
                     document.getElementById("box12").style.display = "block";
@@ -254,6 +262,22 @@
                     document.getElementById("mono").style.display = "none";
             }
         }
+        function teamSet(){
+
+        //オプションタグを連続して書き換える
+                for ( i=0; i<11; i++ ){
+
+                //選択したリーグによって分岐
+                    switch (document.getElementById("classes").selectedIndex){
+                            case 0: document.getElementById("level").options[i].text="";break;
+                            case 1: document.getElementById("level").options[i].text=stage_1[i];break;
+                            case 2: document.getElementById("level").options[i].text=stage_2[i];break;
+                    }
+                }
+
+                //チーム名のセレクトボックスの選択番号を０にする
+                document.getElementById("level").selectedIndex=0;
+            }
         function kaitou(){
             if (i==tantan.length){
                 alert("まずレベルを選択してください。");
