@@ -152,7 +152,7 @@
                 <select name="league" id="classes" onchange="teamSet()">
                     <option value="0">=ステージを選択=</option>
                     <option value="1">Class G</option>
-                    <option value="2">Class F（準備中）</option>
+                    <option value="2">Class F(12まで)</option>
                 </select>
                 <select id="level">
                 <option value="0">=========</option>
@@ -168,7 +168,7 @@
                 <option value="10"></option>
                 </select>
                 <input type="button" value="開始する" onclick="kantango();"><br>
-                ※固有名詞以外は小文字から始めてください。ピリオドはつけません。<br>
+                ※固有名詞以外は小文字から始めてください。ピリオドはつけません。文字数は空白を含みます。<br>
                 <div id="twitter">
                         <a href="#" class="twitter" onclick="botan();">Twitter</a>
                 </div>
@@ -196,9 +196,8 @@
             "=Class G=","レベル1(☆1)","レベル2(☆1)","レベル3(☆1)","レベル4(☆1)","レベル5(☆1)","レベル6(☆1)","レベル7(☆1)","レベル8(☆1)","レベル9(☆1)","レベル10(☆1)"
         );
 
-        //パ・リーグのチームの配列
         var f_class=new Array(
-            "=Class F=","レベル11(☆2)","レベル12(☆2)","レベル13(☆1)","レベル14(☆1)","レベル15(☆1)","レベル16(☆1)","レベル17(☆1)","レベル18(☆1)","レベル19(☆1)","レベル20(☆1)"
+            "=Class F=","レベル11(☆2)","レベル12(☆2)","レベル13(☆2)","レベル14(☆2)","レベル15(☆2)","レベル16(☆2)","レベル17(☆2)","レベル18(☆2)","レベル19(☆2)","レベル20(☆2)"
         );
         var tango1=["午後","再び","年齢、年代","すべての","すでに","〜もまた","アメリカ合衆国","〜と、そして","怒った","りんご"]
         var tantan1=["afternoon","again","age","all","already","also","America","and","angry","apple"]
@@ -346,7 +345,7 @@
         }
         function botan(){
             var num = document.getElementById("level").selectedIndex;
-            var keisan = parseInt(cnt)+parseInt(seito)
+            var keisan = String(parseInt(cnt)+parseInt(seito)）
             openTwitter("☆瞬間英単語☆ レベル"+now+"で"+tantan.length+"問中"+seito+"問正解しました！現在の経験値は"+keisan+"です！","https://flashkorean.herokuapp.com/eitan.html","瞬間英単語","なっかのう");
         }
         function teamSet(){
