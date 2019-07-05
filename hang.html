@@ -358,7 +358,7 @@
         }
         function botan(){
             var num = document.getElementById("level").selectedIndex;
-            var keisan = parseInt(cnt)+parseInt(seito)
+            var keisan = String(parseInt(cnt)+parseInt(seito))
             openTwitter("☆瞬間韓単語☆　レベル"+now+"で"+tantan.length+"問中"+seito+"問正解しました！現在の経験値は"+keisan+"です！","https://flashkorean.herokuapp.com/hang.html","瞬間韓単語","なっかのう");
         }
         function teamSet(){
