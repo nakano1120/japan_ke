@@ -151,8 +151,9 @@
                 レベル選択（左のリストから選択してください。）<br><br>
                 <select name="league" id="classes" onchange="teamSet()">
                     <option value="0">=ステージを選択=</option>
-                    <option value="1">Class G</option>
-                    <option value="2">Class F(12まで)</option>
+                    <option value="1">Old-1</option>
+                    <option value="2">Old-2</option>
+                    <option value="1">class 1</option>
                 </select>
                 <select id="level">
                 <option value="0">=========</option>
@@ -193,11 +194,14 @@
     </div>
     <script>
         var g_class=new Array(
-            "=Class G=","レベル1(☆1)","レベル2(☆1)","レベル3(☆1)","レベル4(☆1)","レベル5(☆1)","レベル6(☆1)","レベル7(☆1)","レベル8(☆1)","レベル9(☆1)","レベル10(☆1)"
+            "=Old-1=","レベル1(☆1)","レベル2(☆1)","レベル3(☆1)","レベル4(☆1)","レベル5(☆1)","レベル6(☆1)","レベル7(☆1)","レベル8(☆1)","レベル9(☆1)","レベル10(☆1)"
         );
 
         var f_class=new Array(
-            "=Class F=","レベル11(☆2)","レベル12(☆2)","レベル13(☆2)","レベル14(☆2)","レベル15(☆2)","レベル16(☆2)","レベル17(☆2)","レベル18(☆2)","レベル19(☆2)","レベル20(☆2)"
+            "=Old-2=","レベル11(☆2)","レベル12(☆2)","-","-","-","-","-","-","-","-"
+        );
+        var class_1=new Array(
+            "=class 1=","レベル1(☆3)","レベル2(☆3)","-","-","-","-","-","-","-","-"
         );
         var tango1=["午後","再び","年齢、年代","すべての","すでに","〜もまた","アメリカ合衆国","〜と、そして","怒った","りんご"]
         var tantan1=["afternoon","again","age","all","already","also","America","and","angry","apple"]
@@ -223,6 +227,8 @@
         var tantan11=["mountain","lake","clear","maybe","continue","wake up","still","today","sleepy","it"]
         var tango12=["〜に遅れる(3単語)","起き上がる(2単語)","〜もまた、〜すぎる","お茶、紅茶","それから、それなら","である（主語がyouまたは複数の現在形）","おいしい","美味しそうに見える（2単語）","ハワイ","どの、どちらの"]
         var tantan12=["be late for","get up","too","tea","then","are","delicious","look good","Hawaii","which"]
+        var tango21=["〜を助ける","〜を試す、やってみる","〜を保持する","（動植物が）育つ、生える","〜のように思える、見える","〜を楽しむ","〜を生み出す、創造する","〜を選ぶ","〜を費やす、使う","〜のように見える、思われる"]
+        var tantan21=["help","try","hold","grow","seem","enjoy","create","choose","spend","appear"]
         var tango=[]
         var tantan=[]
         var now = 0
@@ -242,7 +248,7 @@
                     return
             }else{
                     now=num2*10+num-10
-                    if(now>12){
+                    if(now==13||now==14||now==15||now==16||now==17||now==18||now==19||now==20||now>21){
                         alert("現在、LV13~未実装です。")
                         return;
                     }
@@ -358,6 +364,7 @@
                         case 0: document.getElementById("level").options[i].text="";break;
                         case 1: document.getElementById("level").options[i].text=g_class[i];break;
                         case 2: document.getElementById("level").options[i].text=f_class[i];break;
+                        case 3: document.getElementById("level").options[i].text=class_1[i];break;
                 }
             }
 
