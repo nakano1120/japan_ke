@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>偽中国語メーカー</title>
+    <style>
+    body{
+        margin: 20px;	/* bodyの外側の余白を指定する */
+        padding: 50px 10px 50px 10px;	/* bodyの内側余白を指定する(上:右:下:左) */
+        background-color:#eeeeee;
+    }
+    .Header {
+        position: fixed;	/* ヘッダーを固定する */
+        top: 0;	/* 上部から配置の基準位置を決める */ 
+        left: 0;	/* 左から配置の基準位置を決める */ 
+        width: 100%;	/* ヘッダーの横幅を指定する */
+        height: 35px;	/* ヘッダーの高さを指定する */
+        padding: 10px;	/* ヘッダーの余白を指定する(上下左右) */
+        background-color: #333333;	/* ヘッダーの背景色を指定する */
+        color: #ffffff;	/* フォントの色を指定する */
+        font-size:150%;
+    }	
+    .Contents {
+        width: 100%;	/* コンテンツの横幅を指定する */
+        overflow: auto; /* コンテンツの表示を自動に設定（スクロール） */
+    }
+    .box11{
+        padding: 0.5em 1em;
+        margin: 2em 0;
+        color: #4a4d5e;
+        background: white;
+        border-top: solid 5px #5d627b;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+    }
+    .box11 p {
+        margin: 0; 
+        padding: 10px;
+    }
+    .center{
+        text-align:center;
+    }
+    input[type="text"]{
+        outline: none;
+        border: 1px solid #aaa;
+        -webkit-transition: all .3s;
+        transition: all .3s;
+        width:70%;
+        text-align:center;
+        height:25px;
+        font-size:20px;
+    }
+    input[type="text"]:focus{
+        box-shadow: 0 0 7px #1abc9c;
+        border: 1px solid #1abc9c;
+    }
+    #moji{
+        border-radius: 3px ;
+        padding: 5px;
+        background-color: skyblue;
+    }
+    .btn-push {
+        display: inline-block;
+        max-width: 180px;
+        text-align: left;
+        background-color: #1abc9c;
+        font-size: 16px;
+        color: #FFF;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 10px 24px;
+        border-radius: 4px;
+        border-bottom: 4px solid #1add9c;
+    }
+
+    .btn-push:active {
+        transform: translateY(4px);
+        border-bottom: none;
+    }
+    .box2 {
+        display:none;
+        border: 1px dashed #ccc;
+        padding: 0.5em 1em;
+        margin: 2em 0;
+        font-weight: bold;
+        color: #ff0000;/*文字色*/
+        background: #FFF;
+        border: solid 3px #d36060;/*線*/
+        border-radius: 10px;/*角の丸み*/
+    }
+    .box2 p {
+        margin: 0; 
+        padding: 0;
+    }
+    #mono2{
+        color: #00aa00;
+        border: solid 3px #60d373;/*線*/
+    }
+    .lin{
+        float:right;
+        color:;
+        padding: 0px 50px;
+    }
+    </style>
+</head>
+<body>
+    <div class="Header">偽中国語メーカー</div>	
+    <div class="Contents">	
+        <div class="box11 center">
+            <p>
+                <input type="text" id="kotae">
+                <div class="container">
+                    <a href="#" class="btn-push" onclick="kaitou();">生成</a>
+                </div>
+            </p>
+        </div>
+        <div class="box11 center">
+            <p>
+                <h1 id="monda">作成文章</h1>
+            </p>
+        </div>          
+    </div>
+    <script>
+        function kaitou(){
+            var kanj = document.getElementById("kotae").value
+            kanj=kanj.replace(/この/g,"此")
+            kanj=kanj.replace(/これ/g,"此")
+            kanj=kanj.replace(/あの/g,"此")
+            kanj=kanj.replace(/あれ/g,"此")
+            kanj=kanj.replace(/その/g,"其")
+            kanj=kanj.replace(/それ/g,"其")
+            kanj=kanj.replace(/です/g,"也")
+            kanj=kanj.replace(/ます/g,"也")
+            kanj=kanj.replace(/ください/g,"希望")
+            kanj=kanj.replace(/たい/g,"希望")
+            kanj=kanj.replace(/しょう/g,"希望")
+            kanj=kanj.replace(/ない/g,"不")
+            kanj=kanj.replace(/ので/g,"了、")
+            kanj=kanj.replace(/の/g,"的")
+            kanj=kanj.replace(/な/g,"的")
+            kanj=kanj.replace(/とても/g,"非常")
+            kanj=kanj.replace(/なった/g,"成")
+            kanj=kanj.replace(/なる/g,"成")
+            kanj=kanj.replace(/なり/g,"成")
+            kanj=kanj.replace(/した/g,"了")
+            kanj=kanj.replace(/され/g,"受")
+            kanj=kanj.replace(/あなた/g,"貴方")
+            kanj=kanj.replace(/私/g,"我")
+            kanj=kanj.replace(/俺/g,"我")
+            kanj=kanj.replace(/わたし/g,"我")
+            kanj=kanj.replace(/ワイ/g,"我")
+            kanj=kanj.replace(/分か/g,"理解")
+            kanj=kanj.replace(/わか/g,"理解")
+            kanj=kanj.replace(/する/g,"実行")
+            kanj=kanj.replace(/して/g,"実行")
+            kanj=kanj.replace(/した/g,"実行")
+            kanj=kanj.replace(/サッカー/g,"蹴球")
+            kanj=kanj.replace(/[\u3041-\u3096]/g,"")
+            kanj=kanj.replace(/[\u30a1-\u30f6]/g,"")
+            kanj=kanj.replace(/ー/g,"")
+            document.getElementById("monda").innerHTML=kanj
+        }
+    </script>
+</body>
+</html>
