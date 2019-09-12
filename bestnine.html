@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="なっかのう" />
+    <meta name="twitter:title" content="ベストナイン太郎" />
+    <meta name="twitter:description" content="みんなの今年のベストナインを決めよう！" />
+    <meta name="twitter:url" content="https://flashkorean.herokuapp.com/bestnine.html" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ベストナイン太郎</title>
+    <style>
+    body{
+        margin: 20px;	/* bodyの外側の余白を指定する */
+        padding: 50px 10px 50px 10px;	/* bodyの内側余白を指定する(上:右:下:左) */
+        background-color:#eeeeee;
+    }
+    .Header {
+        position: fixed;	/* ヘッダーを固定する */
+        top: 0;	/* 上部から配置の基準位置を決める */ 
+        left: 0;	/* 左から配置の基準位置を決める */ 
+        width: 100%;	/* ヘッダーの横幅を指定する */
+        height: 35px;	/* ヘッダーの高さを指定する */
+        padding: 10px;	/* ヘッダーの余白を指定する(上下左右) */
+        background-color: #333333;	/* ヘッダーの背景色を指定する */
+        color: #ffffff;	/* フォントの色を指定する */
+        font-size:150%;
+    }	
+    .Contents {
+        width: 100%;	/* コンテンツの横幅を指定する */
+        overflow: auto; /* コンテンツの表示を自動に設定（スクロール） */
+    }
+    .box11{
+        padding: 0.5em 1em;
+        margin: 2em 0;
+        color: #4a4d5e;
+        background: white;
+        border-top: solid 5px #5d627b;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+    }
+    .box11 p {
+        margin: 0; 
+        padding: 10px;
+    }
+    #box11{
+        display:none;
+    }
+    .center{
+        text-align:center;
+    }
+    input[type="text"]{
+        outline: none;
+        border: 1px solid #aaa;
+        -webkit-transition: all .3s;
+        transition: all .3s;
+        width:10%;
+        text-align:center;
+        height:25px;
+        font-size:20px;
+    }
+    input[type="text"]:focus{
+        box-shadow: 0 0 7px #1abc9c;
+        border: 1px solid #1abc9c;
+    }
+    #moji{
+        border-radius: 3px ;
+        padding: 5px;
+        background-color: skyblue;
+    }
+    .btn-push {
+        display: inline-block;
+        max-width: 180px;
+        text-align: left;
+        background-color: #1abc9c;
+        font-size: 16px;
+        color: #FFF;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 10px 24px;
+        border-radius: 4px;
+        border-bottom: 4px solid #1add9c;
+    }
+
+    .btn-push:active {
+        transform: translateY(4px);
+        border-bottom: none;
+    }
+    .box2 {
+        display:none;
+        border: 1px dashed #ccc;
+        padding: 0.5em 1em;
+        margin: 2em 0;
+        font-weight: bold;
+        color: #ff0000;/*文字色*/
+        background: #FFF;
+        border: solid 3px #d36060;/*線*/
+        border-radius: 10px;/*角の丸み*/
+    }
+    .box2 p {
+        margin: 0; 
+        padding: 0;
+    }
+    #mono2{
+        color: #00aa00;
+        border: solid 3px #60d373;/*線*/
+    }
+    .lin{
+        float:right;
+        color:greenyellow;
+        padding: 0px 50px;
+    }
+    .twitter {
+        background-color: #008DDE;
+        box-shadow: 0 4px 0 #0078BD;
+        
+        display: inline;
+        position: relative;
+        font-family: Arial;
+        font-size: 14px;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        color: white;
+        border-radius: 5px;
+        padding: 14px 80px;
+    }
+    .twitter:active {
+    top: 2px;
+        box-shadow: 0 2px 0 #0078BD;
+    }
+    .twitter:hover {
+        background-color: #1397D8;
+    }
+    td {
+        color:#000000;
+        font-size:200%;
+        border: 1px solid #aaa;
+        border-collapse: collapse;
+        border-spacing: 0;
+        border-radius: 3px;
+    }
+    #No{
+        border:none;
+        background-color:white;
+    }
+    </style>
+</head>
+<body>
+    <div class="Header">ベストナイン太郎</div>	
+    <div class="Contents">
+        <div class="box11">
+                <p>
+                    <h1 id="teammei"></h1>
+                    <table>
+                        <tr id="ban1" style="background-color:#00ff00;">
+                                <td id="No">１</td>
+                                <td id="bi1">　</td>
+                                <td class="center" id="nam1">　　　</td>
+                        </tr>
+                        <tr id="ban2" style="background-color:#00ff00;">
+                                <td id="No">２</td>
+                                <td id="bi2">　</td>
+                                <td class="center" id="nam2">　　　</td>
+                        </tr>
+                        <tr id="ban3" style="background-color:#00ff00;">
+                                <td id="No">３</td>
+                                <td id="bi3">　</td>
+                                <td class="center" id="nam3">　　　</td>
+                        </tr>
+                        <tr id="ban4" style="background-color:#ffff00;">
+                                <td id="No">４</td>
+                                <td id="bi4">　</td>
+                                <td class="center" id="nam4">　　　</td>
+                        </tr>
+                        <tr id="ban5" style="background-color:#ffff00;">
+                                <td id="No">５</td>
+                                <td id="bi5">　</td>
+                                <td class="center" id="nam5">　　　</td>
+                        </tr>
+                        <tr id="ban6" style="background-color:#ffff00;">
+                                <td id="No">６</td>
+                                <td id="bi6">　</td>
+                                <td class="center" id="nam6">　　　</td>
+                        </tr>
+                        <tr id="ban7" style="background-color:#ffff00;">
+                                <td id="No">７</td>
+                                <td id="bi7">　</td>
+                                <td class="center" id="nam7">　　　</td>
+                        </tr>
+                        <tr id="ban8" style="background-color:#6666ff;">
+                                <td id="No">８</td>
+                                <td id="bi8">　</td>
+                                <td class="center" id="nam8">　　　</td>
+                        </tr>
+                        <tr id="ban9" style="background-color:#ff6666;">
+                                <td id="No">９</td>
+                                <td id="bi9">　</td>
+                                <td class="center" id="nam9">　　　</td>
+                        </tr>
+                    </table>
+                </p>
+        </div>
+        <div class="box11" id="menubox">
+            <p>
+                <input type="button" value="開始する" onclick="kantango();"><br>
+                チーム名：<input type="text" value="" id="team1"><br>
+                1番<select id="syu1">
+                        <option value="1">投</option>
+                        <option value="2">捕</option>
+                        <option value="3">一</option>
+                        <option value="4">二</option>
+                        <option value="5">三</option>
+                        <option value="6">遊</option>
+                        <option value="7">左</option>
+                        <option value="8">中</option>
+                        <option value="9" selected>右</option>
+                </select>
+                <input type="text" value="" id="bat1"><br>
+                2番<select id="syu2">
+                        <option value="1">投</option>
+                        <option value="2">捕</option>
+                        <option value="3">一</option>
+                        <option value="4">二</option>
+                        <option value="5">三</option>
+                        <option value="6">遊</option>
+                        <option value="7">左</option>
+                        <option value="8" selected>中</option>
+                        <option value="9">右</option>
+                </select>
+                <input type="text" value="" id="bat2"><br>
+                3番<select id="syu3">
+                        <option value="1">投</option>
+                        <option value="2">捕</option>
+                        <option value="3">一</option>
+                        <option value="4">二</option>
+                        <option value="5">三</option>
+                        <option value="6">遊</option>
+                        <option value="7" selected>左</option>
+                        <option value="8">中</option>
+                        <option value="9">右</option>
+                </select>
+                <input type="text" value="" id="bat3"><br>
+                4番<select id="syu4">
+                        <option value="1">投</option>
+                        <option value="2">捕</option>
+                        <option value="3">一</option>
+                        <option value="4">二</option>
+                        <option value="5">三</option>
+                        <option value="6" selected>遊</option>
+                        <option value="7">左</option>
+                        <option value="8">中</option>
+                        <option value="9">右</option>
+                </select>
+                <input type="text" value="" id="bat4"><br>
+                5番<select id="syu5">
+                        <option value="1">投</option>
+                        <option value="2">捕</option>
+                        <option value="3">一</option>
+                        <option value="4">二</option>
+                        <option value="5" selected>三</option>
+                        <option value="6">遊</option>
+                        <option value="7">左</option>
+                        <option value="8">中</option>
+                        <option value="9">右</option>
+                </select>
+                <input type="text" value="" id="bat5"><br>
+                6番<select id="syu6">
+                        <option value="1">投</option>
+                        <option value="2">捕</option>
+                        <option value="3">一</option>
+                        <option value="4" selected>二</option>
+                        <option value="5">三</option>
+                        <option value="6">遊</option>
+                        <option value="7">左</option>
+                        <option value="8">中</option>
+                        <option value="9">右</option>
+                </select>
+                <input type="text" value="" id="bat6"><br>
+                7番<select id="syu7">
+                        <option value="1">投</option>
+                        <option value="2">捕</option>
+                        <option value="3" selected>一</option>
+                        <option value="4">二</option>
+                        <option value="5">三</option>
+                        <option value="6">遊</option>
+                        <option value="7">左</option>
+                        <option value="8">中</option>
+                        <option value="9">右</option>
+                </select>
+                <input type="text" value="" id="bat7"><br>
+                8番<select id="syu8">
+                        <option value="1">投</option>
+                        <option value="2" selected>捕</option>
+                        <option value="3">一</option>
+                        <option value="4">二</option>
+                        <option value="5">三</option>
+                        <option value="6">遊</option>
+                        <option value="7">左</option>
+                        <option value="8">中</option>
+                        <option value="9">右</option>
+                </select>
+                <input type="text" value="" id="bat8"><br>
+                9番<select id="syu9">
+                        <option value="1" selected>投</option>
+                        <option value="2">捕</option>
+                        <option value="3">一</option>
+                        <option value="4">二</option>
+                        <option value="5">三</option>
+                        <option value="6">遊</option>
+                        <option value="7">左</option>
+                        <option value="8">中</option>
+                        <option value="9">右</option>
+                </select>
+                <input type="text" value="" id="bat9"><br>
+            </p>
+        </div>
+    </div>
+    <script>
+        function kantango(){
+            var syubi = ["","投","捕","一","二","三","遊","左","中","右"]
+            var items = [document.getElementById("syu1").value,document.getElementById("syu2").value,document.getElementById("syu3").value,document.getElementById("syu4").value,document.getElementById("syu5").value,document.getElementById("syu6").value,document.getElementById("syu7").value,document.getElementById("syu8").value,document.getElementById("syu9").value];
+            var sen = [document.getElementById("bat1").value,document.getElementById("bat2").value,document.getElementById("bat3").value,document.getElementById("bat4").value,document.getElementById("bat5").value,document.getElementById("bat6").value,document.getElementById("bat7").value,document.getElementById("bat8").value,document.getElementById("bat9").value];
+            var result = items.filter( function( value, index, array ) {
+                //重複なくす
+                return array.indexOf( value ) === index;;
+            })
+            if(result.length!=9){
+                alert('守備位置が不正です')
+                return
+            }
+            document.getElementById('teammei').innerHTML=document.getElementById('team1').value
+            document.getElementById('nam1').innerHTML=sen[0]
+            document.getElementById('nam2').innerHTML=sen[1]
+            document.getElementById('nam3').innerHTML=sen[2]
+            document.getElementById('nam4').innerHTML=sen[3]
+            document.getElementById('nam5').innerHTML=sen[4]
+            document.getElementById('nam6').innerHTML=sen[5]
+            document.getElementById('nam7').innerHTML=sen[6]
+            document.getElementById('nam8').innerHTML=sen[7]
+            document.getElementById('nam9').innerHTML=sen[8]
+            document.getElementById('bi1').innerHTML=syubi[items[0]]
+            document.getElementById('bi2').innerHTML=syubi[items[1]]
+            document.getElementById('bi3').innerHTML=syubi[items[2]]
+            document.getElementById('bi4').innerHTML=syubi[items[3]]
+            document.getElementById('bi5').innerHTML=syubi[items[4]]
+            document.getElementById('bi6').innerHTML=syubi[items[5]]
+            document.getElementById('bi7').innerHTML=syubi[items[6]]
+            document.getElementById('bi8').innerHTML=syubi[items[7]]
+            document.getElementById('bi9').innerHTML=syubi[items[8]]
+            items.forEach(function( value , index ) {
+                var aaa = "ban"+parseInt(index+1)
+                if(value==7 || value==8 || value==9){
+                    document.getElementById(aaa).style.backgroundColor="#00ff00"
+                }else if(value==3 || value==4 || value==5 || value==6){
+                    document.getElementById(aaa).style.backgroundColor="#ffff00"                    
+                }else if(value==2){
+                    document.getElementById(aaa).style.backgroundColor="#6666ff"
+                }else{
+                    document.getElementById(aaa).style.backgroundColor="#ff6666"
+                }
+            });
+        }
+        function kaitou(){
+
+        }
+        function openTwitter(text,url,hash,account) {
+	        var turl = "https://twitter.com/intent/tweet?text="+text+"&url="+url+"&hashtags="+hash+"&via="+account;
+	        window.open(turl,'_blank');
+        }
+        function botan(){
+            var num = document.getElementById("level").selectedIndex;
+            var keisan = String(parseInt(cnt)+parseInt(seito))
+            openTwitter("俺のベストナイン\n","https://flashkorean.herokuapp.com/bestnine.html","ベストナイン太郎",);
+        }
+        ///<div id="twitter">
+        ///     <a href="#" class="twitter" onclick="botan();">Twitter</a>
+        ///</div>
+        </script>
+</body>
+</html>
