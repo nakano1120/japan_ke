@@ -7,8 +7,8 @@
     <meta name="twitter:site" content="なっかのう" />
     <meta name="twitter:title" content="瞬間英単語" />
     <meta name="twitter:description" content="英語力を向上するページです。" />
-    <meta name="twitter:image" content="https://github.com/nakano1120/dokaben/blob/master/man.png?raw=true" />
-    <meta name="twitter:url" content="https://nakano1120.github.io/dokaben/eitan.html" />
+    <meta name="twitter:image" content="https://flashkorean.herokuapp.com/man.png" />
+    <meta name="twitter:url" content="https://flashkorean.herokuapp.com/eitan.html" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>瞬間英単語</title>
     <style>
@@ -206,7 +206,7 @@
             "=Old-2=","レベル11(☆2)","レベル12(☆2)","-","-","-","-","-","-","-","-"
         );
         let class_1=new Array(
-            "=class 1=","レベル1(☆3)","レベル2(☆3)","-","-","-","-","-","-","-","-"
+            "=class 1=","レベル1(☆3)","レベル2(☆3)","レベル3(☆3)","-","-","-","-","-","-","-"
         );
         let tango1=["午後","再び","年齢、年代","すべての","すでに","〜もまた","アメリカ合衆国","〜と、そして","怒った","りんご"]
         let tantan1=["afternoon","again","age","all","already","also","America","and","angry","apple"]
@@ -236,8 +236,8 @@
         let tantan21=["help","try","hold","grow","seem","enjoy","create","choose","spend","let"]
         let tango22=["〜のように見える、思われる","横になる","うそをつく","着く、到着する","〜を発見する","行動する、役を果たす、演じる","上がる、高まる","〜を忘れる","〜をかける、ぶら下がる","（電話を）切る[2]"]
         let tantan22=["appear","lie","lie","arrive","discover","act","rise","forget","hang","hang up"]
-        let tango23=["（ある場所で）過ごす、ぶらつく[2]","〜であれいいのにと思う","生まれる","＜競技・競争などに＞","","","","","",""]
-        let tantan23=["hang out","wish","born","win","","","","","",""]
+        let tango23=["（ある場所で）過ごす、ぶらつく[2]","〜であれいいのにと思う","生まれる","＜競技・競争などに＞勝つ","（病気・災害などと）戦う","〜を拾い上げる、〜を車で迎えに行く","服を着る、〜に服を着せる","考えを伝える","落ちる、減少する","〜を投げる"]
+        let tantan23=["hang out","wish","born","win","fight","pick","dress","communicate","drop","throw"]
         let tango=[]
         let tantan=[]
         let now = 0
@@ -259,7 +259,7 @@
                     return
             }else{
                     now=num2*10+num-10
-                    if(now==13||now==14||now==15||now==16||now==17||now==18||now==19||now==20||now>22){
+                    if(now==13||now==14||now==15||now==16||now==17||now==18||now==19||now==20||now>23){
                         alert("現在、LV13~未実装です。")
                         return;
                     }
