@@ -7,8 +7,8 @@
     <meta name="twitter:site" content="なっかのう" />
     <meta name="twitter:title" content="瞬間英単語" />
     <meta name="twitter:description" content="英語力を向上するページです。" />
-    <meta name="twitter:image" content="https://flashkorean.herokuapp.com/man.png" />
-    <meta name="twitter:url" content="https://flashkorean.herokuapp.com/eitan.html" />
+    <meta name="twitter:image" content="https://github.com/nakano1120/dokaben/blob/master/man.png?raw=true" />
+    <meta name="twitter:url" content="https://nakano1120.github.io/dokaben/eitan.html" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>瞬間英単語</title>
     <style>
@@ -232,14 +232,17 @@
         let tantan11=["mountain","lake","clear","maybe","continue","wake up","still","today","sleepy","it"]
         let tango12=["〜に遅れる(3単語)","起き上がる(2単語)","〜もまた、〜すぎる","お茶、紅茶","それから、それなら","である（主語がyouまたは複数の現在形）","おいしい","美味しそうに見える（2単語）","ハワイ","どの、どちらの"]
         let tantan12=["be late for","get up","too","tea","then","are","delicious","look good","Hawaii","which"]
-        let tango21=["〜を助ける","〜を試す、やってみる","〜を保持する","（動植物が）育つ、生える","〜のように思える、見える","〜を楽しむ","〜を生み出す、創造する","〜を選ぶ","〜を費やす、使う","〜のように見える、思われる"]
-        let tantan21=["help","try","hold","grow","seem","enjoy","create","choose","spend","appear"]
+        let tango21=["〜を助ける","〜を試す、やってみる","〜を保持する","（動植物が）育つ、生える","〜のように思える、見える","〜を楽しむ","〜を生み出す、創造する","〜を選ぶ","〜を費やす、使う","〜に〜させてやる"]
+        let tantan21=["help","try","hold","grow","seem","enjoy","create","choose","spend","let"]
+        let tango22=["〜を助ける","〜を試す、やってみる","〜を保持する","（動植物が）育つ、生える","〜のように思える、見える","〜を楽しむ","〜を生み出す、創造する","〜を選ぶ","〜を費やす、使う","〜に〜させてやる"]
+        let tantan22=["help","try","hold","grow","seem","enjoy","create","choose","spend","let"]
         let tango=[]
         let tantan=[]
         let now = 0
         let i=0
         let seito=0
         let score=0
+        let ran=""
         let cook;       //cookieデータを格納する変数
         let cStart,cEnd;  //訪問回数部分を切取る為の位置を格納
         let cnt;        //訪問回数を格納
@@ -254,7 +257,7 @@
                     return
             }else{
                     now=num2*10+num-10
-                    if(now==13||now==14||now==15||now==16||now==17||now==18||now==19||now==20||now>23){
+                    if(now==13||now==14||now==15||now==16||now==17||now==18||now==19||now==20||now>21){
                         alert("現在、LV13~未実装です。")
                         return;
                     }
@@ -338,40 +341,20 @@
             if(i==tantan.length){
                 document.getElementById("monda").innerHTML="終了<br>正答数："+tantan.length+"問中"+seito+"問"
                 alert("終了！時間は"+PassSec/10+"秒でした")
-                if(now<200){
-                    score=10000-PassSec*9-(tantan.length-seito)*300
-                    let ran=""
-                    if(score>7500){
-                        ran="S"
-                    }else if(score>6000){
-                        ran="A"
-                    }else if(score>5000){
-                        ran="B"
-                    }else if(score>3500){
-                        ran="C"
-                    }else if(score>2000){
-                        ran="D"
-                    }else{
-                        ran="E"
-                    }
+                score=10000-PassSec*9-(tantan.length-seito)*300
+                if(score>7500){
+                    ran="S"
+                }else if(score>6000){
+                    ran="A"
+                }else if(score>5000){
+                    ran="B"
+                }else if(score>3500){
+                    ran="C"
+                }else if(score>2000){
+                    ran="D"
                 }else{
-                    score=30000-PassSec*9-(tantan.length-seito)*300
-                    let ran=""
-                    if(score>22500){
-                        ran="S"
-                    }else if(score>18000){
-                        ran="A"
-                    }else if(score>15000){
-                        ran="B"
-                    }else if(score>11500){
-                        ran="C"
-                    }else if(score>6000){
-                        ran="D"
-                    }else{
-                        ran="E"
-                    }
+                    ran="E"
                 }
-
                 alert("スコア："+score+"　あなたは"+ran+"ランクです！")
                 stopShowing()
                 document.getElementById("kotae").value=""
