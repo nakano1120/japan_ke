@@ -1,5 +1,5 @@
 <?php
 
-header('Location: /hang.html');
+header('Location: /eitan.html');
 
 ?>
